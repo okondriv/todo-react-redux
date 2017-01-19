@@ -12,3 +12,20 @@ a.active {
 nav {
 	padding-top: 20px;
 }
+
+.add-item-btn {
+	margin-left: 10px;
+}
+
+.item.status:nth-child(2n+1) {
+	margin: 10px 0;
+    background: #f9ffe6;
+}
+
+.item.status .form-check-input {
+	margin-right: 10px;
+}
+
+.item .glyphicon-remove {
+	float: right;
+}
