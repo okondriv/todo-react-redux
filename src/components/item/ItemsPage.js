@@ -44,7 +44,7 @@ class ItemsPage extends React.Component {
     }
 }
 
-ItemsssPage.propTypes = {
+ItemsPage.propTypes = {
 	items: PropTypes.array.isRequired,
 	actions: PropTypes.object.isRequired
 };
