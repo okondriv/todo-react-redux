@@ -1,3 +1,5 @@
+export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
+export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
 export const CREATE_COURSE = 'CREATE_COURSE';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOAD_ITEMS_SUCCESS = 'LOAD_ITEMS_SUCCESS';
