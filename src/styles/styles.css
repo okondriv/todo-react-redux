@@ -25,7 +25,18 @@ nav {
 .item.status .form-check-input {
 	margin-right: 10px;
 }
-
+.item.status a {
+	font-weight: bold;
+	color: #4d4d4d;
+}
+.item.status.done {
+	text-decoration: line-through;
+}
 .item .glyphicon-remove {
 	float: right;
+	color: red;
+}
+
+.item .glyphicon-remove:hover {
+	cursor: pointer;
 }

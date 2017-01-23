@@ -5,7 +5,7 @@ class HomePage extends React.Component {
     render() {
         return  (
             <div className="jumbotron">
-            <h1>Administration</h1>
+            <h1>React ToDo application</h1>
             <p>React administration.</p>
             <Link to="about" className="btn btn-primary btn-lg">Learn more</Link>
             </div>

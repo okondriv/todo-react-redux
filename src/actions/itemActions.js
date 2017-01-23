@@ -13,6 +13,11 @@ export function createItemSuccess(item) {
 export function updateItemSuccess(item) {
 	return { type: types.UPDATE_ITEM_SUCCESS, item };
 }
+
+export function deleteItemSuccess(item) {
+	return { type: types.DELETE_ITEM_SUCCESS, item };
+}
+
 export function loadItems() {
 	return function(dispatch) {
 		dispatch(beginAjaxCall());
@@ -31,6 +36,18 @@ export function saveItem(item) {
 			item.id ? dispatch(updateItemSuccess(item)) :
 			dispatch(createItemSuccess(item));
 		}).catch(error => {
+			dispatch(ajaxCallError(error));
+			throw(error);
+		});
+	};
+}
+
+export function deleteItem(item) {
+	return function(dispatch, getState) {
+		dispatch(beginAjaxCall());
+		return itemApi.deleteItem(item).then(
+			dispatch(deleteItemSuccess(item))
+		).catch(error => {
 			dispatch(ajaxCallError(error));
 			throw(error);
 		});

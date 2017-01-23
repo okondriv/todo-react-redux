@@ -57,7 +57,6 @@ class ItemApi {
     item = Object.assign({}, item);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulate server-side validation
         const minItemTitleLength = 1;
         if (item.title.length < minItemTitleLength) {
           reject(`Title must be at least ${minItemTitleLength} characters.`);
@@ -76,14 +75,13 @@ class ItemApi {
     });
   }
 
-  static deleteItem(itemId) {
+  static deleteItem(item) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const indexOfItemToDelete = items.findIndex(item => {
-          item.id == itemId;
-        });
-        items.splice(indexOfItemToDelete, 1);
-        resolve();
+        if (item.id) {
+          const indexOfItemToDelete = items.findIndex(data => data.id == item.id);
+          items.splice(indexOfItemToDelete, 1);
+        }
       }, delay);
     });
   }

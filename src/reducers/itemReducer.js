@@ -15,6 +15,10 @@ export default function itemReducer(state = initialState.items, action) {
               ...state.filter(item => item.id !== action.item.id),
               Object.assign({}, action.item)
             ];
+        case types.DELETE_ITEM_SUCCESS:
+            return [
+              ...state.filter(item => item.id !== action.item.id)
+            ];
 
         default: 
             return state;
