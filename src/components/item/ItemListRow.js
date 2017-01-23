@@ -9,10 +9,31 @@ class ItemListRow extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
+            item: Object.assign({}, this.props.item),
             errors: {},
             saving: false
         };
+        this.changeStatus = this.changeStatus.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+    }
+
+    changeStatus() {
+        event.preventDefault();
+
+        let item = this.state.item;
+        item['done'] = !this.state.item['done'];
+        this.setState({item: item});
+
+        this.setState({saving: true});
+        this.props.actions.saveItem(this.state.item)
+        .then(() => {
+            this.setState({saving: false});
+            toastr.success('Item changed');
+        })
+        .catch(error => {
+            this.setState({saving: false});
+            toastr.error(error);
+        });
     }
 
     deleteItem() {
@@ -26,17 +47,12 @@ class ItemListRow extends React.Component {
             this.setState({saving: false});
         });
     }
-    redirect() {
-        this.setState({saving: false});
-        toastr.success('Item deleted');
-        this.context.router.push('/items');
-    }
 
     render() {
         const {item} = this.props;
         return (
-            <div key={item.id} className={`item status ${item.status}`}>
-                <input className="form-check-input" type="checkbox" id="statusCheckbox" defaultChecked={item.status == 'done'}/>
+            <div key={item.id} className={`item status done-${item.done}`}>
+                <input className="form-check-input" type="checkbox" id="statusCheckbox" onChange={this.changeStatus} defaultChecked={item.done}/>
                 <Link to={'/item/' + item.id}>{item.title}</Link>
                 <span className="glyphicon glyphicon-remove" onClick={this.deleteItem}></span>
             </div>

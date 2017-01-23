@@ -7,31 +7,31 @@ const items = [
   {
     id: "write-docs",
     title: "Write docs",
-    status: "active",
+    done: false,
     userId: "olya-haida"
   },
   {
     id: "buy-bread",
     title: "Buy bread",
-    status: "done",
+    done: true,
     authorId: "olya-haida"
   },
   {
     id: "buy-milk",
     title: "Buy milk",
-    status: "active",
+    done: false,
     authorId: "olya-haida"
   },
   {
     id: "repair-smth",
     title: "Repair smth",
-    status: "active",
+    done: false,
     authorId: "petro-haida"
   },
   {
     id: "buy-present",
     title: "Buy present",
-    status: "done",
+    done: true,
     authorId: "petro-haida"
   }
 ];
