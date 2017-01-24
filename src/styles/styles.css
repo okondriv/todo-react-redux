@@ -12,7 +12,17 @@ a.active {
 nav {
 	padding-top: 20px;
 }
-
+.form-group .label-block {
+	margin-right: 10px;
+}
+.form-group.filter-data {
+	float: right;
+	width: 20%;
+	margin-bottom: 0;
+}
+.form-group.filter-data label {
+	display: none;
+}
 .add-item-btn {
 	margin-left: 10px;
 }

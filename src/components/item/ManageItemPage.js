@@ -8,7 +8,6 @@ import toastr from 'toastr';
 class ManageItemPage extends React.Component {
     constructor(props, context) {
         super(props, context);
-
         this.state = {
             item: Object.assign({}, this.props.item),
             errors: {},
@@ -28,7 +27,15 @@ class ManageItemPage extends React.Component {
     updateItemState(event) {
         const field = event.target.name;
         let item = this.state.item;
-        item[field] = event.target.value;
+        switch (field) {
+            case "done":
+                item[field] = !item[field];
+                break;
+            
+            default:
+                item[field] = event.target.value;
+                break;
+        }
         return this.setState({item: item});
     }
 
@@ -79,7 +86,7 @@ ManageItemPage.contextTypes = {
 
 function mapStateToProps(state, ownProps) {
     const itemId = ownProps.params.id;
-    let item = {id: '', title: '', userId: ''};
+    let item = {id: '', title: '', done: false, userId: ''};
     if(itemId && state.items.length > 0) {
         item = getItemById(state.items, itemId);
     }

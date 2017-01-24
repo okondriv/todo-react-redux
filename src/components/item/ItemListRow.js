@@ -52,8 +52,9 @@ class ItemListRow extends React.Component {
         const {item} = this.props;
         return (
             <div key={item.id} className={`item status done-${item.done}`}>
-                <input className="form-check-input" type="checkbox" id="statusCheckbox" onChange={this.changeStatus} defaultChecked={item.done}/>
-                <Link to={'/item/' + item.id}>{item.title}</Link>
+                <input className="form-check-input" type="checkbox" 
+                 id="statusCheckbox" onChange={this.changeStatus} defaultChecked={item.done}/>
+                <Link to={'/item/' + item.id}>{item .title}</Link>
                 <span className="glyphicon glyphicon-remove" onClick={this.deleteItem}></span>
             </div>
         );

@@ -1,6 +1,7 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+import Checkbox from '../common/Checkbox';
 
 const ItemForm = ({item, onSave, onChange, saving, errors}) => {
     return (
@@ -12,6 +13,13 @@ const ItemForm = ({item, onSave, onChange, saving, errors}) => {
               value={item.title}
               onChange={onChange}
               error={errors.title}/>
+            <Checkbox
+              name="done"
+              label="Done"
+              type="checkbox"
+              value={item.done}
+              onChange={onChange}
+              checked={item.done}/>
             <input
               type="submit"
               disabled={saving}
