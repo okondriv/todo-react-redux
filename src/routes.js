@@ -6,6 +6,7 @@ import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage';
 import ItemsPage from './components/item/ItemsPage';
 import ManageItemPage from './components/item/ManageItemPage';
+import ManageGroupPage from './components/group/ManageGroupPage';
 
 export default (
     <Route path="/" component={App}>
@@ -14,6 +15,8 @@ export default (
       <Route path="items" component={ItemsPage} />
       <Route path="item" component={ManageItemPage} />
       <Route path="item/:id" component={ManageItemPage} />
+      <Route path="group" component={ManageGroupPage} />
+      <Route path="group/:id" component={ManageGroupPage} />
       <Route path="courses" component={CoursesPage} />
     </Route>
 );

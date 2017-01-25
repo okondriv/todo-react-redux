@@ -8,31 +8,51 @@ const items = [
     id: "write-docs",
     title: "Write docs",
     done: false,
-    userId: "olya-haida"
+    userId: "olya-haida",
+    group: {
+      id: "repair-notes",
+      title: "Repair Notes"
+    }
   },
   {
     id: "buy-bread",
     title: "Buy bread",
     done: true,
-    authorId: "olya-haida"
+    authorId: "olya-haida",
+    group: {
+      id: "birthday-buying",
+      title: "Birthday Buying"
+    }
   },
   {
     id: "buy-milk",
     title: "Buy milk",
     done: false,
-    authorId: "olya-haida"
+    authorId: "olya-haida",
+    group: {
+      id: "birthday-buying",
+      title: "Birthday Buying"
+    }
   },
   {
     id: "repair-smth",
     title: "Repair smth",
     done: false,
-    authorId: "petro-haida"
+    authorId: "petro-haida",
+    group: {
+      id: "repair",
+      title: "Repair"
+    }
   },
   {
     id: "buy-present",
     title: "Buy present",
     done: true,
-    authorId: "petro-haida"
+    authorId: "petro-haida",
+    group: {
+      id: "birthday-buying",
+      title: "Birthday Buying"
+    }
   }
 ];
 

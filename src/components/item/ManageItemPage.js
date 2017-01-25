@@ -86,7 +86,7 @@ ManageItemPage.contextTypes = {
 
 function mapStateToProps(state, ownProps) {
     const itemId = ownProps.params.id;
-    let item = {id: '', title: '', done: false, userId: ''};
+    let item = {id: '', title: '', done: false, userId: '', groupId: ''};
     if(itemId && state.items.length > 0) {
         item = getItemById(state.items, itemId);
     }

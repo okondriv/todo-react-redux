@@ -6,66 +6,85 @@ import ItemList from './ItemList';
 import {browserHistory} from 'react-router';
 import toastr from 'toastr';
 import SelectInput from '../common/SelectInput';
+import getHandlers from '../../helpers/filterHelper';
 
 class ItemsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
-
         this.state = {
             errors: {},
-            filterValue: "",
+            filterValue: {},
             saving: false
         };
 
-        this.filterOptions = [{value: 'done', text: 'Done'}, {value: 'active', text: 'Active'}];
+        this.filterStatusOptions = [{value: 'done', text: 'Done'}, {value: 'active', text: 'Active'}];
+        this.filterGroupOptions = [{value: 'birthday-buying', text: 'Birthday buying'}, {value: 'repair', text: 'Repair'}, {value: 'repair-notes', text: 'Repair notes'}];
 
         this.redirectToAddItemPage = this.redirectToAddItemPage.bind(this);
-        this.setFilterState = this.setFilterState.bind(this);
+        this.setFilterStatusState = this.setFilterStatusState.bind(this);
+        this.setFilterGroupState = this.setFilterGroupState.bind(this);
     }
 
     redirectToAddItemPage() {
         browserHistory.push('/item');
     }
 
-    setFilterState(event) {
-        this.setState({filterValue: event.target.value});
+    redirectToCreateGroupPage() {
+        browserHistory.push('/group');
     }
 
-    filterData(items) {
-        let filteredData = items.filter((c) => {  
-            switch (this.state.filterValue) {
-                case "done":
-                    if (c.done === true) return true;
-                    break;
-                case "active":
-                    if (c.done === false) return true;
-                    break;
-                default:
-                    return true;
-            }
-        });
+    setFilterStatusState(event) {
+        let filterVal = this.state.filterValue;
+        filterVal.status = event.target.value;
+        this.setState({filterValue: filterVal});
+    }
+
+    setFilterGroupState(event) {
+        let filterVal = this.state.filterValue;
+        filterVal.group = event.target.value;
+        this.setState({filterValue: filterVal});
+    }
+
+    filterData(items, dispatch) {
+        let handlers = getHandlers();
+        let properHandlers = handlers.filter(h => h.canHandle(this.state.filterValue));
+
+        let filteredData = items.filter(item => properHandlers.every(h => h.isSuitable(item, this.state.filterValue)));
+        
         return filteredData;
     }
 
     render() {
         const {items} = this.props;
         const filteredData = this.filterData(items);
-        
+
         return  (
             <div>
-              <h1>ToDo Items</h1>
-              <input type="submit"
+                <h1>ToDo Items</h1>
+                <input type="submit"
                      value="Add Item"
-                     className="btn btn-primary"
+                     className="btn btn-primary add-button"
                      onClick={this.redirectToAddItemPage}/>
-                <SelectInput name="filterBy"
+                <input type="submit"
+                     value="Create group"
+                     className="btn btn-primary"
+                     onClick={this.redirectToCreateGroupPage}/>
+
+                <SelectInput name="filterByGroup"
                     label=""
-                    onChange={this.setFilterState}
-                    defaultOption="Select all"
-                    value={this.state.filterValue}
+                    onChange={this.setFilterGroupState}
+                    defaultOption="Select group"
+                    value={this.state.filterValue.group}
                     error=""
-                    options={this.filterOptions} />
-              <ItemList items={filteredData}/>
+                    options={this.filterGroupOptions} />
+                <SelectInput name="filterByStatus"
+                    label=""
+                    onChange={this.setFilterStatusState}
+                    defaultOption="Select status"
+                    value={this.state.filterValue.status}
+                    error=""
+                    options={this.filterStatusOptions} />
+                <ItemList items={filteredData}/>
             </div>
         );
     }
@@ -73,7 +92,7 @@ class ItemsPage extends React.Component {
 
 ItemsPage.propTypes = {
     items: PropTypes.array.isRequired,
-    filterValue: PropTypes.string,
+    filterValue: PropTypes.object,
     actions: PropTypes.object.isRequired
 };
 
