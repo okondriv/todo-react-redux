@@ -20,7 +20,7 @@ export default function getHandlers() {
         this.isSuitable = (item, filterObject) => true;
     };
 
-    var array = [];
+    let array = [];
     array.push(new doneFilter());
     array.push(new activeFilter());
     array.push(new defaultFilter());

@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as itemActions from '../../actions/itemActions';
 import ItemForm from './ItemForm';
 import toastr from 'toastr';
+import {groupsFormattedForDropdownHelper} from '../../helpers/formatGroupsHelper';
 
 class ManageItemPage extends React.Component {
     constructor(props, context) {
@@ -26,12 +27,22 @@ class ManageItemPage extends React.Component {
 
     updateItemState(event) {
         const field = event.target.name;
+
         let item = this.state.item;
+        let group = {id: '', title: ''};
+
         switch (field) {
             case "done":
                 item[field] = !item[field];
                 break;
-            
+            case "group":
+                if(event.target.value) {
+                    let groupInfo = this.props.groups.filter(group => group.value == event.target.value);
+                    console.log(groupInfo);
+                    group = {id: groupInfo[0].value, title: groupInfo[0].text};
+                }
+                item[field] = group;
+                break;
             default:
                 item[field] = event.target.value;
                 break;
@@ -64,6 +75,7 @@ class ManageItemPage extends React.Component {
               item={this.state.item} 
               errors={this.state.errors}
               saving={this.state.saving}
+              groups={this.props.groups}
             />
         );
     }
@@ -77,7 +89,8 @@ function getItemById(items, id) {
 
 ManageItemPage.propTypes = {
     item: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    groups: PropTypes.array
 };
 
 ManageItemPage.contextTypes = {
@@ -86,12 +99,13 @@ ManageItemPage.contextTypes = {
 
 function mapStateToProps(state, ownProps) {
     const itemId = ownProps.params.id;
-    let item = {id: '', title: '', done: false, userId: '', groupId: ''};
+    let item = {id: '', title: '', done: false, userId: '', group: {id: '', title: ''}};
     if(itemId && state.items.length > 0) {
         item = getItemById(state.items, itemId);
     }
     return {
-        item: item
+        item: item,
+        groups: groupsFormattedForDropdownHelper(state.groups)
     };
 }
 

@@ -7,6 +7,7 @@ import {browserHistory} from 'react-router';
 import toastr from 'toastr';
 import SelectInput from '../common/SelectInput';
 import getHandlers from '../../helpers/filterHelper';
+import {groupsFormattedForDropdownHelper} from '../../helpers/formatGroupsHelper';
 
 class ItemsPage extends React.Component {
     constructor(props, context) {
@@ -18,8 +19,7 @@ class ItemsPage extends React.Component {
         };
 
         this.filterStatusOptions = [{value: 'done', text: 'Done'}, {value: 'active', text: 'Active'}];
-        this.filterGroupOptions = [{value: 'birthday-buying', text: 'Birthday buying'}, {value: 'repair', text: 'Repair'}, {value: 'repair-notes', text: 'Repair notes'}];
-
+        
         this.redirectToAddItemPage = this.redirectToAddItemPage.bind(this);
         this.setFilterStatusState = this.setFilterStatusState.bind(this);
         this.setFilterGroupState = this.setFilterGroupState.bind(this);
@@ -76,7 +76,7 @@ class ItemsPage extends React.Component {
                     defaultOption="Select group"
                     value={this.state.filterValue.group}
                     error=""
-                    options={this.filterGroupOptions} />
+                    options={this.props.groups} />
                 <SelectInput name="filterByStatus"
                     label=""
                     onChange={this.setFilterStatusState}
@@ -93,13 +93,14 @@ class ItemsPage extends React.Component {
 ItemsPage.propTypes = {
     items: PropTypes.array.isRequired,
     filterValue: PropTypes.object,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    groups: PropTypes.array
 };
 
 function mapStateToProps(state, ownProps) {
     return {
         items: state.items,
-        filterValue: state.filterValue
+        groups: groupsFormattedForDropdownHelper(state.groups)
     };
 }
 

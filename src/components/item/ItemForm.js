@@ -3,9 +3,9 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 import Checkbox from '../common/Checkbox';
 
-const ItemForm = ({item, onSave, onChange, saving, errors}) => {
+const ItemForm = ({item, onSave, onChange, saving, errors, groups}) => {
     return (
-        <form>
+        <form className="manage-item">
             <h1>Manage item</h1>
             <TextInput
               name="title"
@@ -13,6 +13,14 @@ const ItemForm = ({item, onSave, onChange, saving, errors}) => {
               value={item.title}
               onChange={onChange}
               error={errors.title}/>
+            <SelectInput
+              name="group"
+              label=""
+              onChange={onChange}
+              defaultOption="Select group"
+              value={item.group.id}
+              error=""
+              options={groups}/>
             <Checkbox
               name="done"
               label="Done"
@@ -35,7 +43,8 @@ ItemForm.propTypes = {
     onSave: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
     saving: React.PropTypes.bool,
-    errors: React.PropTypes.object
+    errors: React.PropTypes.object,
+    groups: React.PropTypes.array
 };
 
 export default ItemForm;
