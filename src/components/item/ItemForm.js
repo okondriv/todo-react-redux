@@ -8,6 +8,7 @@ const ItemForm = ({item, onSave, onChange, saving, errors, groups}) => {
         <form className="manage-item">
             <h1>Manage item</h1>
             <TextInput
+              type="text"
               name="title"
               label="Title"
               value={item.title}

@@ -8,6 +8,7 @@ const GroupForm = ({group, onSave, onChange, onDeleteFromGroup, items, saving, e
         <form className="change-group">
             <h1>Manage group</h1>
             <TextInput
+              type="text"
               name="title"
               label="Title"
               value={group.title}
