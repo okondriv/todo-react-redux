@@ -38,7 +38,6 @@ class ManageItemPage extends React.Component {
             case "group":
                 if(event.target.value) {
                     let groupInfo = this.props.groups.filter(group => group.value == event.target.value);
-                    console.log(groupInfo);
                     group = {id: groupInfo[0].value, title: groupInfo[0].text};
                 }
                 item[field] = group;

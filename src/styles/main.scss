@@ -1,0 +1,124 @@
+#app {
+	color: #4d4d4d;
+	min-width: 550px;
+	max-width: 850px;
+	margin: 0 auto;
+}
+
+a.active {
+	color: orange;
+}
+
+nav {
+	padding-top: 20px;
+	float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.manage-item .filter-data {
+	float: left;
+	margin: 0 20px 0 0;
+}
+.main-menu {
+	float: left;
+}
+.register-block {
+	float: right;
+}
+
+.items-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+
+	th, td {
+	    padding: 8px;
+	    text-align: left;
+	    border-bottom: 1px solid #ddd;
+	    width: 33%;
+
+		&:first-child, &:first-child {
+			width: 60%;
+		}
+		&:second-child, &:second-child {
+			width: 20%;
+		}
+		&:last-child, &:last-child {
+			width: 20%;
+		}
+	}
+}
+
+.add-button {
+	margin-right: 10px;
+}
+.form-group {
+	&.filter-data {
+		float: right;
+		width: 20%;
+		margin-bottom: 0;
+		margin-left: 10px;
+		label {
+			display: none;
+		}
+	}
+	.label-block {
+		margin-right: 10px;
+	}
+}
+
+.add-item-btn {
+	margin-left: 10px;
+}
+
+.item.status {
+	height: 40px;
+	line-height: 40px;
+	&:nth-child(2n+1) {
+		margin: 10px 0;
+	    background: #f9ffe6;
+	}
+	.form-check-input {
+		margin-right: 10px;
+		float: left;
+		height: 32px;
+		margin-top: 0;
+	}
+	& > * {
+	    vertical-align: middle;
+	    line-height: 32px!important;
+	}
+	a {
+		font-weight: bold;
+		color: #4d4d4d;
+	}
+
+	&.done-true .title-link {
+		text-decoration: line-through;
+		color: red;
+		span {
+			color: #4d4d4d;
+		}
+	}
+}
+
+.group-link {
+	text-align: center;
+	.group-title {
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		padding: 0px 10px;
+		line-height: 30px;
+		background-color: #e3e3e4;
+		display: inline-block;
+	}
+}
+
+.item .glyphicon-remove {
+	float: right;
+	color: red;
+	&:hover {
+		cursor: pointer;
+	}
+}
+

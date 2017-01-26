@@ -13,16 +13,16 @@ const GroupForm = ({group, onSave, onChange, onDeleteFromGroup, items, saving, e
               value={group.title}
               onChange={onChange}
               error={errors.title}/> 
-            { changed ? 
+            {changed ?
             <input
               type="submit"
               disabled={saving}
               value={saving ? 'Saving...' : 'Save'}
               className="btn btn-primary"
               onClick={onSave}/>
-            : null }
+            : null}
         </form>
-        { group.id ? 
+        {group.id ? 
             <table className="items-table">
               <tbody>
               <tr>
@@ -46,8 +46,7 @@ const GroupForm = ({group, onSave, onChange, onDeleteFromGroup, items, saving, e
               </tbody>
  
             </table>
-           : ''
-         }
+           : ''}
       </div>
     );
 };
