@@ -7,7 +7,7 @@ import * as userActions from '../../actions/userActions';
 import LoginForm from './LoginForm';
 
 class LoginPage extends React.Component {
-	constructor(props, context) {
+    constructor(props, context) {
         super(props, context);
         this.state = {
             user: Object.assign({}, this.props.user),
@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
     }
     render() {
         return  (
-        	<LoginForm
+            <LoginForm
               onChange={this.updateUserState}
               onSave={this.login}
               user={this.state.user} 

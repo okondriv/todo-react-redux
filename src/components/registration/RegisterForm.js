@@ -57,7 +57,8 @@ RegisterForm.propTypes = {
     onSave: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
     saving: React.PropTypes.bool,
-    changed: React.PropTypes.bool
+    changed: React.PropTypes.bool,
+    errors: React.PropTypes.object
 };
 
 export default RegisterForm;
